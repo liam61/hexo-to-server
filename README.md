@@ -346,4 +346,4 @@ npm run deploy
 
 贴上 [个人网站](https://www.freeze61.me/)，建站初期，欢迎您的光临~
 
-喜欢的话麻烦 [github](https://github.com/jeffery5461) 给个 ★ 哦
+喜欢的话麻烦 [github](https://github.com/jeffery5461/hexo-to-your-server) 给个 ★ 哦
