@@ -1,7 +1,5 @@
 # hexo-to-your-server
 
-带你跳过各种坑，一次性把 Hexo 博客部署到自己的服务器
-
 ## 一、完成效果
 
 [点击查看个人网站](http://www.freeze61.me/)
@@ -20,13 +18,13 @@
 
 - [通过Git将Hexo博客部署到服务器](https://www.jianshu.com/p/e03e363713f9)
 
-可以使用官方的`node`安装包，也可以使用`nvm`管理 node 版本，但千万**不要混用**，不然会环境和管理上的麻烦
+可以使用官方的`node`安装包或者`nvm`管理 node 版本，但千万**不要混用**，不然会环境和管理上的麻烦
 
 2. 安装：基本都是下一步，但记得把目录改到其他盘，这里我具体是在 `D:\programming\nodejs`
 
-![node更换路径](hexo-server/node-path.jpg)
+![node更换路径](hexo-to-server/node-path.jpg)
 
-打开`cmd`查看`node`安装情况，分别执行如下命令
+打开`cmd`查看`node`安装情况，执行如下命令
 
 ```bash
 node -v
@@ -39,7 +37,7 @@ npm -v
 
 - [windows npm -g 全局安装的命令找不到](https://blog.csdn.net/jizhuanfan0742/article/details/80910187)
 
-进入安装目录，创建文件夹`node_global`和`node_cache`，分别执行如下命令
+进入安装目录，创建文件夹`node_global`和`node_cache`，执行如下命令
 
 ```bash
 npm config set prefix "D:\programming\nodejs\node_global"
@@ -48,7 +46,9 @@ npm config set cache "D:\programming\nodejs\node_cache"
 
 环境配置：新增环境变量`NODE_PATH`和添加`Path`，两个值都为 `D:\programming\nodejs\node_global`
 
-![node更换路径](hexo-server/env-node.jpg)
+![node更换路径](hexo-to-server/env-node.jpg)
+
+![node更换路径](hexo-to-server/env-path.jpg)
 
 4. 测试全局环境
 
@@ -59,15 +59,15 @@ npm install hexo-cli -g
 hexo
 ```
 
-如果出现下面情况，恭喜你成功跳过`全局模块不能调用`的坑
+如果出现下面情况，恭喜你成功`全局模块调用`
 
-![node更换路径](hexo-server/test-hexo.jpg)
+![node更换路径](hexo-to-server/test-hexo.jpg)
 
-5. 如果出现`命令未找到，或不是可执行程序`，别着急！**先仔细重复 3-4 步**
+5. 如果出现`命令未找到，或不是可执行程序`，别着急！**先仔细重复 3-4 步**，一般是能够给解决的
 
-6. 如果第 4 步有错即不能调用到`hexo`全局命令，往后看，如果没错，**直接跳过**
+6. 如果实在是不能解决，往后看，如果没错，**直接跳过该步**
 
-随便找个地方初始化文件，分别执行如下命令
+随便找个地方初始化文件，执行如下命令
 
 ```bash
 mkdir hexo-blog
@@ -80,26 +80,26 @@ cd hexo-blog && npm init
 - 法 1：检查`D:\programming\nodejs\node_global`目录是否有`hexo`模块，执行如下命令
 
 ```bash
-D:\programming\nodejs\node_global\hexo
+D:\programming\nodejs\node_global\hexo // 每次使用全局模块带上前缀即可
 ```
 
-如果成功显示，步骤 4 的情况，则调用成功。如果觉得每次加一系列前缀麻烦，往后看
+如果成功显示步骤 4 的情况，则调用成功。如果觉得每次加前缀麻烦，往后看
 
-- 法 2：使用`link`命令，执行如下命令
+- 法 2：使用`link`命令链接，执行如下命令
 
 ```bash
 npm link hexo
 ```
 
-package.json 中新建脚本如下，并执行
+package.json 中新建脚本如下，执行如下命令
 
 ```bash
 npm run hexo
 ```
 
-![新建npm脚本](hexo-server/npm-script.jpg)
+![新建npm脚本](hexo-to-server/npm-script.jpg)
 
-- 法 3：你还可以直接在`hexo-blog`中下载，分别执行如下命令
+- 法 3：你还可以直接在`hexo-blog`中下载，执行如下命令
 
 ```bash
 npm install hexo-cli -S
@@ -108,7 +108,7 @@ npm run hexo （还是要在package.json中新建脚本）
 
 ### 初始化`hexo`项目
 
-1. 如果是按照上一节步骤 6 过来的，则就在`hexo-blog`下初始化，分别执行如下命令
+1. 如果是按照上一节步骤 6 过来的，则在`hexo-blog`文件下初始化，执行如下命令
 
 ```bash
 hexo init myblog && cd myblog
@@ -127,9 +127,9 @@ npm install
 git clone https://github.com/iissnan/hexo-theme-next themes/next
 ```
 
-在**本地配置文件**中设置`theme`
+在**本地配置文件**中设置`theme`属性
 
-![添加next主题](hexo-server/hexo-theme.jpg)
+![添加next主题](hexo-to-server/hexo-theme.jpg)
 
 3. 本地执行`hexo`项目
 
@@ -139,9 +139,9 @@ git clone https://github.com/iissnan/hexo-theme-next themes/next
 npm start
 ```
 
-![新建npm-start脚本](hexo-server/npm-script-start.jpg)
+![新建npm-start脚本](hexo-to-server/npm-script-start.jpg)
 
-自己可以打开`http://localhost:4000/`验证效果吧
+快可以打开 [http://localhost:4000/](http://localhost:4000/) 验证效果吧
 
 ### `git`环境搭建
 
@@ -155,13 +155,20 @@ npm start
 
 2. 生成`ssh`认证，执行如下命令
 
+参考资料：
+
+- [Git 提交时报错warning: LF will be replaced by CRLF in](https://blog.csdn.net/Yan_Less/article/details/72866395)
+
 ```bash
 git config --global user.name "yourname"
 git config --global user.email youremail@example.com
 ssh-keygen -t rsa -C "youremail@example.com"
+git config --global core.autocrlf false  // 禁用自动转换，这个不设置后面上传时会出现警告，如下
 ```
 
-获取到的`ssh`认证在`C:\Users\yourname\.ssh`中
+![git警告](hexo-to-server/git-warning.jpg)
+
+最后获取到的`ssh`认证在`C:\Users\yourname\.ssh`中
 
 ---
 
@@ -171,7 +178,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
 1. 登录到远程服务器，建议使用`Xshell 5`
 
-2. 安装 git，分别执行如下命令
+2. 安装 git，执行如下命令
 
 ```bash
 git --version // 如无，则安装
@@ -179,7 +186,7 @@ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-d
 yum install -y git
 ```
 
-3. 创建用户并配置其仓库，分别执行如下命令
+3. 创建用户并配置其仓库，执行如下命令
 
 参考资料：
 
@@ -188,13 +195,13 @@ yum install -y git
 ```bash
 useradd git
 passwd git // 设置密码
-su git // 这步很重要，不换用户后面会很麻烦
+su git // 这步很重要，不切换用户后面会很麻烦
 cd /home/git/
 mkdir -p projects/blog // 项目存在的真实目录
 mkdir repos && cd repos
 git init --bare blog.git // 创建一个裸露的仓库
 cd blog.git/hooks
-vi post-receive // 创建hook钩子函数，输入了内容如下
+vi post-receive // 创建hook钩子函数，输入了内容如下（原理可以参考上面的链接）
 ```
 
 ```bash
@@ -202,14 +209,15 @@ vi post-receive // 创建hook钩子函数，输入了内容如下
 git --work-tree=/home/git/projects/blog --git-dir=/home/git/repos/blog.git checkout -f
 ```
 
+添加完毕后修改权限，执行如下命令
+
 ```bash
-// 添加完毕后修改权限
 chmod +x post-receive
 exit // 退出到 root 登录
 chown -R git:git home/git/repos/blog.git // 添加权限
 ```
 
-4. 测试`git仓库`是否可用，随便空白文件夹，执行如下命令
+4. 测试`git仓库`是否可用，另找空白文件夹，执行如下命令
 
 ```bash
 git clone git@server_ip:/home/git/repos/blog.git
@@ -217,7 +225,7 @@ git clone git@server_ip:/home/git/repos/blog.git
 
 如果能把空仓库拉下来，就说明 git 仓库搭建成功了
 
-![git仓库测试](hexo-server/git-clone.jpg)
+![git仓库测试](hexo-to-server/git-clone.jpg)
 
 5. 建立`ssh`信任关系，在**本地电脑**分别执行如下命令
 
@@ -237,9 +245,9 @@ ssh-copy-id -i C:/Users/yourname/.ssh/id_rsa.pub git@server_ip
 ssh git@server_ip
 ```
 
-**注**：此时的 ssh 登录不需要密码！否则就有错，请仔细重复步骤 3-4
+**注**：此时的 ssh 登录不需要密码！否则就**有错**，请仔细重复步骤 3-4
 
-6. 如果第 5 步能成功，则禁用`git用户`的 shell 登录权限，分别执行如下命令
+6. 如果第 5 步能成功，则禁用`git用户`的 shell 登录权限，执行如下命令
 
 参考资料：
 
@@ -249,13 +257,13 @@ ssh git@server_ip
 cat /etc/shells // 查看`git-shell`是否在登录方式里面，有则跳过
 which git-shell // 查看是否安装
 vi /etc/shells
-添加上2步显示出来的路劲，通常在/usr/bin/git-shell
+添加上2步显示出来的路劲，通常在 /usr/bin/git-shell
 ```
 
 修改`/etc/passwd`中的权限，将原来的
 
 ```bash
-`git:x:1000:1000::/home/git:/bin/bash`
+git:x:1000:1000::/home/git:/bin/bash
 ```
 
 修改为
@@ -266,11 +274,12 @@ git:x:1000:1000:,,,:/home/git:/usr/bin/git-shell
 
 ### 搭建`nginx`服务器
 
-1. 下载并安装`nginx`，分别执行如下命令
+1. 下载并安装`nginx`，执行如下命令
 
 参考资料：
 
 - [Nginx 源码安装和简单的配置](https://www.jianshu.com/p/4134a44a09c2)
+- [Nginx 配置 HTTPS 服务器](https://aotu.io/notes/2016/08/16/nginx-https/index.html)
 
 ```bash
 cd /usr/local/src
@@ -292,19 +301,23 @@ alias nginx='/usr/local/nginx/sbin/nginx' // 为nginx取别名，后面可直接
 先启动是否安装成功，执行如下命令
 
 ```bash
-nginx // 直接来，浏览器查看 server_ip，默认是80端口
+nginx // 直接来！浏览器查看 server_ip，默认是80端口
 ```
 
-配置文件，分别执行如下命令
+配置文件，执行如下命令
 
 ```bash
 nginx -s stop // 先停止nginx
 cd /usr/local/nginx/conf
 vi nginx.conf
-修改 root 解析路径
+修改 root 解析路径，如下图
+同时将 user 改为 root 如下图，不然nginx无法访问 /home/git/project/blog
+nginx -s reload
 ```
 
-![修改nginx配置](hexo-server/nginx-conf.jpg)
+![修改nginx配置](hexo-to-server/nginx-conf.jpg)
+
+![修改nginx user](hexo-to-server/nginx-user.jpg)
 
 ---
 
@@ -316,7 +329,7 @@ vi nginx.conf
 
 1. 编辑`_config.yml`的`deploy`属性
 
-![编辑本地deploy](hexo-server/config-deploy.jpg)
+![编辑本地deploy](hexo-to-server/config-deploy.jpg)
 
 2. 在`package.json`中添加 npm 脚本
 
