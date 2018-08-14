@@ -14,9 +14,9 @@
 
 参考链接：
 
-- [史上最详细的Hexo博客搭建图文教程](https://xuanwo.org/2015/03/26/hexo-intor/)
+- [史上最详细的 Hexo 博客搭建图文教程](https://xuanwo.org/2015/03/26/hexo-intor/)
 
-- [通过Git将Hexo博客部署到服务器](https://www.jianshu.com/p/e03e363713f9)
+- [通过 Git 将 Hexo 博客部署到服务器](https://www.jianshu.com/p/e03e363713f9)
 
 可以使用官方的`node`安装包或者`nvm`管理 node 版本，但千万**不要混用**，不然会环境和管理上的麻烦
 
@@ -119,7 +119,7 @@ npm install
 
 参考链接：
 
-- [Hexo设置主题以及Next主题个性设置](https://www.jianshu.com/p/b20fc983005f)
+- [Hexo 设置主题以及 Next 主题个性设置](https://www.jianshu.com/p/b20fc983005f)
 
 - [官网全部主题](https://hexo.io/themes/)
 
@@ -157,7 +157,7 @@ npm start
 
 参考资料：
 
-- [Git 提交时报错warning: LF will be replaced by CRLF in](https://blog.csdn.net/Yan_Less/article/details/72866395)
+- [Git 提交时报错 warning: LF will be replaced by CRLF in](https://blog.csdn.net/Yan_Less/article/details/72866395)
 
 ```bash
 git config --global user.name "yourname"
@@ -214,7 +214,7 @@ git --work-tree=/home/git/projects/blog --git-dir=/home/git/repos/blog.git check
 ```bash
 chmod +x post-receive
 exit // 退出到 root 登录
-chown -R git:git home/git/repos/blog.git // 添加权限
+chown -R git:git /home/git/repos/blog.git // 添加权限
 ```
 
 4. 测试`git仓库`是否可用，另找空白文件夹，执行如下命令
@@ -227,27 +227,25 @@ git clone git@server_ip:/home/git/repos/blog.git
 
 ![git仓库测试](hexo-to-server/git-clone.jpg)
 
-5. 建立`ssh`信任关系，在**本地电脑**分别执行如下命令
+5. 建立`ssh`信任关系，在**本地电脑**，执行如下命令
 
 参考资料：
 
 - [ssh-copy-id 帮你建立信任](http://roclinux.cn/?p=2551)
 
 ```bash
-ssh-copy-id -i C:/Users/yourname/.ssh/id_rsa.pub root@server_ip
-ssh root@server_ip // 测试能否登录
-```
-
-同理，添加 git 的登录方式（添加 root 是为了以后开发，而 git 用户在确认建立联系后会关闭 ssh 登录方式）
-
-```bash
+su git
+cd /home/git
+mkdir .ssh && cd .ssh
+vi authorized_keys
+然后把本地的 .ssh\id_rsa.pub，也就是公钥复制进去，表明这是你的认证
 ssh-copy-id -i C:/Users/yourname/.ssh/id_rsa.pub git@server_ip
-ssh git@server_ip
+ssh git@server_ip // 测试能否登录
 ```
 
-**注**：此时的 ssh 登录不需要密码！否则就**有错**，请仔细重复步骤 3-4
+**注**：此时的 ssh 登录 git 用户不需要密码！否则就**有错**，请仔细重复步骤 3-4
 
-6. 如果第 5 步能成功，则禁用`git用户`的 shell 登录权限，执行如下命令
+6. 如果第 5 步能成功，为了安全起见禁用`git用户`的 shell 登录权限，从而只能用`git clone`,`git push`等登录，执行如下命令
 
 参考资料：
 
@@ -340,7 +338,7 @@ nginx -s reload
 },
 ```
 
-3. 链接！这下在本地调试就用`npm start`，调试好了就上传到服务器，美滋滋~快通过你的服务器ip访问吧
+3. 链接！这下在本地调试就用`npm start`，调试好了就上传到服务器，美滋滋~快通过你的服务器 ip 访问吧
 
 ```bash
 npm run deploy
