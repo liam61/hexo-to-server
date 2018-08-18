@@ -234,11 +234,6 @@ git clone git@server_ip:/home/git/repos/blog.git
 - [ssh-copy-id 帮你建立信任](http://roclinux.cn/?p=2551)
 
 ```bash
-su git
-cd /home/git
-mkdir .ssh && cd .ssh
-vi authorized_keys
-然后把本地的 .ssh\id_rsa.pub，也就是公钥复制进去，表明这是你的认证
 ssh-copy-id -i C:/Users/yourname/.ssh/id_rsa.pub git@server_ip
 ssh git@server_ip // 测试能否登录
 ```
@@ -348,7 +343,11 @@ npm run deploy
 
 ## 五、总结
 
-本次教程介绍`node`环境配置，主要强调了全局模块的调用，然后是初始化 hexo 项目，建议多参考官方的配置。然后搭建本地和服务器的`git`环境，通过`ssh通行证`交互。接下来是通过`nginx.conf`文件来配置`nginx`。最后`_config.yml`的`deploy`参数来连接本地和服务器
+> 本次教程介绍`node`环境配置，主要强调了全局模块的调用，
+> 然后是初始化 hexo 项目，建议多参考官方的配置，
+> 然后搭建本地和服务器的`git`环境，通过`ssh`通行证交互，
+> 接下来是通过`nginx.conf`文件来配置`nginx`，
+> 最后`_config.yml`的`deploy`参数来连接本地和服务器。
 
 ---
 
@@ -358,4 +357,4 @@ npm run deploy
 
 贴上 [个人网站](https://www.freeze61.me/)，建站初期，欢迎您的光临~
 
-喜欢的话麻烦 [github](https://github.com/jeffery5461/hexo-to-your-server) 给个 ★ 哦
+喜欢的话麻烦 [Github](https://github.com/lawler61/hexo-to-your-server) 给个 ★ 哦
